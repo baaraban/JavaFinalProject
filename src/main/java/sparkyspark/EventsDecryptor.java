@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 @RegisterUDF
 public class EventsDecryptor implements UDF1<String, String>, Serializable {
-    @Value("${codes.values}'}")
+    @Value("${codes.values}")
     private String[] codesValues;
 
     private Map<String, String> codesMap = new HashMap<>();
@@ -28,7 +28,6 @@ public class EventsDecryptor implements UDF1<String, String>, Serializable {
 
     }
 
-    private Map<String, String> maps;
     @Override
     public String call(String val) throws Exception {
         return this.codesMap.get(val);

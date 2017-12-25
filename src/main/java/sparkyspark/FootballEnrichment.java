@@ -17,6 +17,8 @@ public class FootballEnrichment implements Serializable {
         DataFrame df = frameBuilder.load("data/rawData.txt");
         df = df.withColumn("event name",
                 callUDF(EventsDecryptor.class.getName(),col("code")));
+        df = df.withColumn("team",
+                callUDF(TeamDeterminator.class.getName(), col("from")));
         df.show();
     }
 }
