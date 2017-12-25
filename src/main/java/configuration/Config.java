@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan(basePackages = {"enrichments", "sparkyspark", "validators", "configuration",
-        "infrastructure", "helpers", "services", "annotations"})
+        "infrastructure", "helpers", "services", "annotations", "consts"})
 @PropertySource({"classpath:football_columns.properties", "classpath:codes.properties", "classpath:teams.properties"})
 public class Config {
     @Bean

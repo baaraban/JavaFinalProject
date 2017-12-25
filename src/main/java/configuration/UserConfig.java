@@ -1,5 +1,7 @@
 package configuration;
 
+import consts.EnvironmentConsts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +15,8 @@ import java.util.Map;
 
 @Component
 public class UserConfig implements Serializable {
-    public final int MAX_SECONDS_VALUE = 60;
-    public final int MIN_SECONDS_VALUE = 0;
-    public final int MAX_MINUTES_VALUE = 120;
-    public final int MIN_MINUTES_VALUE = 0;
-    public final int ONE_TIME_DURATION = 45;
-
-    private final String BOTH_ACTION_MARKING = "(both)";
-    private final String FROM_ACTION_MARKING = "(from)";
-    private final String TO_ACTION_MARKING = "(to)";
+    @Autowired
+    private EnvironmentConsts consts;
 
     public List<String> bothActions = new ArrayList<String>();
     public List<String> fromActions = new ArrayList<String>();
@@ -48,14 +43,14 @@ public class UserConfig implements Serializable {
             String val = value.substring(value.indexOf('=')+1, value.length()).trim();
 
             //I know, it's very bad, but I'm practicing with extremal coding, sorry about that
-            if(val.contains(TO_ACTION_MARKING)){
-                val = val.replace(TO_ACTION_MARKING, "");
+            if(val.contains(consts.TO_ACTION_MARKING)){
+                val = val.replace(consts.TO_ACTION_MARKING, "");
                 toActions.add(key);
-            } else if(val.contains(FROM_ACTION_MARKING)){
-                val = val.replace(FROM_ACTION_MARKING, "");
+            } else if(val.contains(consts.FROM_ACTION_MARKING)){
+                val = val.replace(consts.FROM_ACTION_MARKING, "");
                 fromActions.add(key);
-            } else if(val.contains(BOTH_ACTION_MARKING)) {
-                val = val.replace(BOTH_ACTION_MARKING, "");
+            } else if(val.contains(consts.BOTH_ACTION_MARKING)) {
+                val = val.replace(consts.BOTH_ACTION_MARKING, "");
                 bothActions.add(key);
             }
 
