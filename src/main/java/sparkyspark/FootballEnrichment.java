@@ -1,5 +1,8 @@
 package sparkyspark;
 
+import enrichments.EventsDecryptor;
+import enrichments.FootballTimeDeterminator;
+import enrichments.TeamDeterminator;
 import org.apache.spark.sql.DataFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
