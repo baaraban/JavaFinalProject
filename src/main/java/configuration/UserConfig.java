@@ -45,20 +45,20 @@ public class UserConfig implements Serializable {
     public void initMap(){
         for(String value: codesValues) {
             String key = value.substring(0, value.indexOf('=')).trim();
+            String val = value.substring(value.indexOf('=')+1, value.length()).trim();
 
             //I know, it's very bad, but I'm practicing with extremal coding, sorry about that
-            if(key.contains(TO_ACTION_MARKING)){
-                key = key.replace(TO_ACTION_MARKING, "");
+            if(val.contains(TO_ACTION_MARKING)){
+                val = val.replace(TO_ACTION_MARKING, "");
                 toActions.add(key);
-            } else if(key.contains(FROM_ACTION_MARKING)){
-                key = key.replace(FROM_ACTION_MARKING, "");
+            } else if(val.contains(FROM_ACTION_MARKING)){
+                val = val.replace(FROM_ACTION_MARKING, "");
                 fromActions.add(key);
-            } else if(key.contains(BOTH_ACTION_MARKING)) {
-                key = key.replace(BOTH_ACTION_MARKING, "");
+            } else if(val.contains(BOTH_ACTION_MARKING)) {
+                val = val.replace(BOTH_ACTION_MARKING, "");
                 bothActions.add(key);
             }
 
-            String val = value.substring(value.indexOf('=')+1, value.length()).trim();
             this.codesMap.put(key, val);
         }
 
