@@ -14,8 +14,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @ComponentScan
 @PropertySource("classpath:football_columns.properties")
 public class Config {
-
-
     @Bean
     public JavaSparkContext sparkContext() {
         return new JavaSparkContext(new SparkConf()
@@ -25,7 +23,4 @@ public class Config {
 
     @Bean
     public SQLContext sqlContext(){ return new SQLContext(sparkContext()); }
-
-    @Bean
-    public FootballEnrichment footballEnrichment() { return new FootballEnrichment(sparkContext(), sqlContext()); }
 }
