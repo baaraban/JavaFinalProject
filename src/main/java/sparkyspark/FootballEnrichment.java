@@ -19,6 +19,8 @@ public class FootballEnrichment implements Serializable {
                 callUDF(EventsDecryptor.class.getName(),col("code")));
         df = df.withColumn("team",
                 callUDF(TeamDeterminator.class.getName(), col("from")));
+        df = df.withColumn("time",
+                callUDF(FootballTimeDeterminator.class.getName(), col("eventTime")));
         df.show();
     }
 }
