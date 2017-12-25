@@ -12,7 +12,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @ComponentScan
-@PropertySource("classpath:football_columns.properties")
+@PropertySource({"classpath:football_columns.properties", "classpath:codes.properties"})
 public class Config {
     @Bean
     public JavaSparkContext sparkContext() {

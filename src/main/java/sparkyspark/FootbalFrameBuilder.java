@@ -31,8 +31,6 @@ public class FootbalFrameBuilder implements Serializable {
     private String[] columnsInRows;
 
     private StructType getStructType(){
-
-        String[] columnsInRows = { "code", "from", "to", "eventTime", "stadion"};
         List<StructField> fields = new ArrayList<>();
         for(String fieldName: columnsInRows){
             StructField field = DataTypes.createStructField(fieldName, DataTypes.StringType, true);
@@ -43,7 +41,9 @@ public class FootbalFrameBuilder implements Serializable {
     }
 
     public JavaRDD<Row> getRowRdd(String filePath){
-        String[] columnsInRows = { "code", "from", "to", "eventTime", "stadion"};
+
+        //smells like kostyl', but it's not working any other way(serializable exception)
+        String[] columnsInRows = this.columnsInRows;
         JavaRDD<String> rdd = javaSparkContext.textFile(filePath, 1);
         return rdd.map(record -> {
             ArrayList<String> attributes = new ArrayList<String>();
