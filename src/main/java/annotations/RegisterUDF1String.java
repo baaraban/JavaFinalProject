@@ -7,5 +7,5 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Component
-public @interface RegisterUDF {
+public @interface RegisterUDF1String {
 }
