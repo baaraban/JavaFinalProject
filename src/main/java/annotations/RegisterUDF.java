@@ -1,4 +1,4 @@
-package sparkyspark;
+package annotations;
 
 import org.springframework.stereotype.Component;
 

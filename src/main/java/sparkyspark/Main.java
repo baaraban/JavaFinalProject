@@ -1,7 +1,7 @@
 package sparkyspark;
 
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.SQLContext;
+import configuration.Config;
+import infrastructure.FootballEnrichment;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {

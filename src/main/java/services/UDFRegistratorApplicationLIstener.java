@@ -1,4 +1,4 @@
-package sparkyspark;
+package services;
 
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.api.java.UDF1;
@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.apache.spark.sql.types.DataTypes;
+import annotations.RegisterUDF;
 
 import java.util.Collection;
 
@@ -23,7 +24,7 @@ public class UDFRegistratorApplicationLIstener implements ApplicationListener<Co
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         Collection<Object> udfObjects = context.getBeansWithAnnotation(RegisterUDF.class).values();
         for(Object udfObject: udfObjects){
-            sqlContext.udf().register(udfObject.getClass().getName(), (UDF1<?,?>)udfObject, DataTypes.StringType);
+            sqlContext.udf().register(udfObject.getClass().getName(), (UDF1<?, ?>) udfObject, DataTypes.StringType);
         }
     }
 }

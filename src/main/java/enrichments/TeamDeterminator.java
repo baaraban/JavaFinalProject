@@ -1,9 +1,10 @@
 package enrichments;
 
+import configuration.UserConfig;
 import org.apache.spark.sql.api.java.UDF1;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sparkyspark.RegisterUDF;
+import annotations.RegisterUDF;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
@@ -13,15 +14,14 @@ import java.util.Map;
 @Component
 @RegisterUDF
 public class TeamDeterminator implements UDF1<String, String>, Serializable {
-
-    @Value("${football.teams}")
-    private String teamSquads;
+    @Autowired
+    private UserConfig userConfig;
 
     private Map<String, String> teamMap = new HashMap<>();
 
     @PostConstruct
     public void initMap(){
-            String[] teams = teamSquads.split(";");
+            String[] teams = userConfig.teamSquads.split(";");
             for(String team: teams){
                 String key = team.substring(0, team.indexOf('='));
                 String value = team.substring(team.indexOf('=') + 1, team.length());
