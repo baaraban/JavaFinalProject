@@ -16,4 +16,7 @@ public class EnvironmentConsts implements Serializable {
     public final String BOTH_ACTION_MARKING = "(both)";
     public final String FROM_ACTION_MARKING = "(from)";
     public final String TO_ACTION_MARKING = "(to)";
+
+    public static final String PROD = "production";
+    public static final String DEV = "development";
 }

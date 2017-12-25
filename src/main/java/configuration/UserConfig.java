@@ -3,6 +3,7 @@ package configuration;
 import consts.EnvironmentConsts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class UserConfig implements Serializable {
     @Autowired
     private EnvironmentConsts consts;
+
+    public String filePath = "data/rawData.txt";
 
     public List<String> bothActions = new ArrayList<String>();
     public List<String> fromActions = new ArrayList<String>();
@@ -64,6 +67,4 @@ public class UserConfig implements Serializable {
             this.teamMap.put(key, value);
         }
     }
-
-
 }

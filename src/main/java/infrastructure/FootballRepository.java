@@ -1,5 +1,6 @@
 package infrastructure;
 
+import annotations.ShowDataFrameInTheBeginning;
 import enrichments.EventsDecryptor;
 import enrichments.FootballTimeDeterminator;
 import enrichments.TeamDeterminator;
@@ -20,9 +21,14 @@ public class FootballRepository implements Serializable {
     @Autowired
     private FootbalFrameBuilder frameBuilder;
 
-    public void doWork(){
-        DataFrame df = frameBuilder.load("data/rawData.txt");
+    public void doWork(String filePath){
+        DataFrame df = frameBuilder.load(filePath);
+        this.workWithDataFrame(df);
+    }
 
+    @ShowDataFrameInTheBeginning
+    public void workWithDataFrame(DataFrame df)
+    {
 
         df = df.withColumn("isTimeValid",
                 functions.callUDF(TimeValidator.class.getName(), col("eventTime")));
