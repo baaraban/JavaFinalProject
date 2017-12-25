@@ -17,20 +17,8 @@ public class EventsDecryptor implements UDF1<String, String>, Serializable {
     @Autowired
     private UserConfig userConfig;
 
-    private Map<String, String> codesMap = new HashMap<>();
-
-    @PostConstruct
-    public void initMap(){
-        for(String value: userConfig.codesValues) {
-            String key = value.substring(0, value.indexOf('=')).trim();
-            String val = value.substring(value.indexOf('=')+1, value.length()).trim();
-            this.codesMap.put(key, val);
-        }
-
-    }
-
     @Override
     public String call(String val) throws Exception {
-        return this.codesMap.get(val);
+        return userConfig.codesMap.get(val);
     }
 }

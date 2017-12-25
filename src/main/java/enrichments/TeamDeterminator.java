@@ -17,22 +17,9 @@ public class TeamDeterminator implements UDF1<String, String>, Serializable {
     @Autowired
     private UserConfig userConfig;
 
-    private Map<String, String> teamMap = new HashMap<>();
-
-    @PostConstruct
-    public void initMap(){
-            String[] teams = userConfig.teamSquads.split(";");
-            for(String team: teams){
-                String key = team.substring(0, team.indexOf('='));
-                String value = team.substring(team.indexOf('=') + 1, team.length());
-                this.teamMap.put(key, value);
-            }
-
-    }
-
     @Override
     public String call(String s) throws Exception {
-        for(Map.Entry<String, String> pair: teamMap.entrySet()){
+        for(Map.Entry<String, String> pair: userConfig.teamMap.entrySet()){
             if(pair.getValue().contains(s)){
                 return pair.getKey();
             }
